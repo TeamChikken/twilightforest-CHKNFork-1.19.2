@@ -1938,6 +1938,11 @@ public class TowerWingComponent extends TFStructureComponentOld {
 		// start somewhere in the lower part
 		int startHeight = this.height > 1 ? rand.nextInt((int) (this.height * 0.66F)) : this.height;
 
+		if (this.size <= 6) {
+			// prevent artifact
+			return;
+		}
+
 		// near the middle
 		int startZ = 3 + rand.nextInt(Math.max(this.size - 6, 1));
 
