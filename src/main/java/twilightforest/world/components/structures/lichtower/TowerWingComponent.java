@@ -1939,7 +1939,7 @@ public class TowerWingComponent extends TFStructureComponentOld {
 		int startHeight = this.height > 1 ? rand.nextInt((int) (this.height * 0.66F)) : this.height;
 
 		// near the middle
-		int startZ = 3 + rand.nextInt(this.size - 6);
+		int startZ = 3 + rand.nextInt(Math.max(this.size - 6, 1));
 
 		// make a line all the way down to the foundation
 		int dx = this.getXWithOffsetRotated(0, startZ, rotation);
