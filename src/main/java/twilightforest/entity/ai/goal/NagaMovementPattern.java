@@ -70,6 +70,10 @@ public class NagaMovementPattern extends Goal {
 			}
 			case CHARGE -> {
 				BlockPos tpoint = this.findCirclePoint(clockwise, 14, Math.PI);
+				if (tpoint == null) {
+					this.naga.getNavigation().stop();
+					return;
+				}
 				this.naga.getNavigation().moveTo(tpoint.getX(), tpoint.getY(), tpoint.getZ(), 1.0D);
 				this.naga.setCharging(true);
 			}
@@ -88,7 +92,12 @@ public class NagaMovementPattern extends Goal {
 					rotation = 0.1D;
 				}
 
+
 				BlockPos tpoint = this.findCirclePoint(this.clockwise, radius, rotation);
+				if (tpoint == null) {
+					this.naga.getNavigation().stop();
+					return;
+				}
 				this.naga.getNavigation().moveTo(tpoint.getX(), tpoint.getY(), tpoint.getZ(), 1.0D);
 			}
 			case DAZE -> {
@@ -199,6 +208,11 @@ public class NagaMovementPattern extends Goal {
 	 * Finds a point that allows us to circle the target clockwise.
 	 */
 	private BlockPos findCirclePoint(boolean clockwise, double radius, double rotation) {
+		if (this.naga.getTarget() == null) {
+			this.naga.getNavigation().stop();
+			return null;
+		}
+
 		LivingEntity toCircle = this.naga.getTarget();
 
 		// compute angle
