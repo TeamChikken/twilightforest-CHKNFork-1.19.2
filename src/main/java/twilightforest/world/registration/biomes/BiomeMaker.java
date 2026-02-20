@@ -331,7 +331,7 @@ public final class BiomeMaker extends BiomeHelper {
 						penguinSpawning(),
 						glacierGen()
 				)
-						.temperature(0.8F)
+						.temperature(0.08F)
 						.downfall(0.1F)
 						.precipitation(Biome.Precipitation.SNOW)
 						.build()
